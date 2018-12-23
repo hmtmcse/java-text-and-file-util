@@ -38,10 +38,11 @@ public class TexFileTest {
 
             JsonReadWrite jsonReadWrite = new JsonReadWrite();
             LinkedHashMap linkedHashMap = jsonReadWrite.readJsonStringToMap(textFileData.text);
-            TMUtil.print("End Text to JSON");
+            TMUtil.printMap(linkedHashMap);
 
 
             linkedHashMap = jsonReadWrite.readJsonFileToMap("test-data/user-test.json");
+            TMUtil.printMap(linkedHashMap);
 
             TMUtil.print("End");
 
