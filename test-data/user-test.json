@@ -1,0 +1,55 @@
+{
+  "baseUrl": "http://localhost:8080",
+  "contextType": "application/json",
+  "name": "User End Point Testing",
+  "requests": [
+    {
+      "name": "List All User",
+      "url": "/api/v2/user/list",
+      "method": "get",
+      "response": {
+        "contextType": "application/json",
+        "jsonAssertion":{
+          "equal": {
+            "isSuccess": true
+          },
+          "greaterThanEqual": {
+            "total": 50
+          },
+          "and":{
+            "equal": {
+              "isSuccess": true
+            },
+            "greaterThanEqual": {
+              "total": 1000
+            }
+          }
+        },
+        "httpCode": 200,
+        "content": {
+          "isDeleted": true,
+          "isActive": true
+        }
+      }
+    },
+    {
+      "name": "Create User",
+      "url": "/api/v2/user/create",
+      "method": "post",
+      "contextType": "application/json",
+      "params": {
+        "name": "Touhid Mia",
+        "email": "touhid@bitmascot.com",
+        "password": "123456"
+      },
+      "response": {
+        "contextType": "application/json",
+        "httpCode": 200,
+        "content": {
+          "isSuccess": true,
+          "message": "Operation Success"
+        }
+      }
+    }
+  ]
+}

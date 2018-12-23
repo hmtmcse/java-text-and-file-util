@@ -1,7 +1,9 @@
 package com.hmtmcse.jtfutil.test;
 
-import com.hmtmcse.exapp.textfile.TextFileException;
-import com.hmtmcse.exapp.textfile.parser.YmlReader;
+
+
+import com.hmtmcse.jtfutil.TextFileException;
+import com.hmtmcse.jtfutil.parser.YmlReader;
 
 import java.util.LinkedHashMap;
 import java.util.List;

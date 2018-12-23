@@ -1,7 +1,7 @@
 package com.hmtmcse.jtfutil.text;
 
-import com.hmtmcse.exapp.textfile.TextFileException;
-import com.hmtmcse.exapp.textfile.TextFileUtil;
+import com.hmtmcse.jtfutil.TextFileException;
+import com.hmtmcse.jtfutil.TextFileUtil;
 
 import java.io.File;
 import java.io.FileInputStream;

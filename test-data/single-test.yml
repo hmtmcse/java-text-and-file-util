@@ -1,0 +1,10 @@
+dataSource:
+    host: localhost
+    name: database_name
+    username: root
+    password: ""
+
+environments:
+    development:
+        server:
+            port: 8888
