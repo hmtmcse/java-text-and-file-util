@@ -3,10 +3,7 @@ package com.hmtmcse.jtfutil.text;
 import com.hmtmcse.jtfutil.TextFileException;
 import com.hmtmcse.jtfutil.TextFileUtil;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 
 public class ReadWriteTextFile {
 
@@ -18,5 +15,27 @@ public class ReadWriteTextFile {
             throw new TextFileException(e.getMessage());
         }
     }
+
+
+    public TextFileData fileToString(String location) throws TextFileException {
+        TextFileData textFileData = new TextFileData();
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(TextFileUtil.getFile(location)));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
+                stringBuilder.append(System.getProperty("line.separator"));
+                textFileData.addLine(line);
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            throw new TextFileException(e.getMessage());
+        }
+        textFileData.setText(stringBuilder.toString());
+        textFileData.setTotalLine(textFileData.getLine().size());
+        return textFileData;
+    }
+
 
 }
