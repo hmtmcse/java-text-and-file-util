@@ -44,6 +44,10 @@ public class TexFileTest {
             linkedHashMap = jsonReadWrite.readJsonFileToMap("test-data/user-test.json");
             TMUtil.printMap(linkedHashMap);
 
+            textFileData = readWriteTextFile.fileToString("test-data/test-customer.json");
+            TestCustomer testCustomer = jsonReadWrite.readJsonStringAsKlass(textFileData.text, TestCustomer.class);
+            testCustomer = jsonReadWrite.readJsonFileAsKlass("test-data/test-customer.json", TestCustomer.class);
+
             TMUtil.print("End");
 
         } catch (TextFileException e) {
