@@ -4,8 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hmtmcse.jtfutil.TextFileException;
-import com.hmtmcse.jtfutil.TextFileUtil;
-import org.yaml.snakeyaml.Yaml;
+import com.hmtmcse.jtfutil.io.FileUtil;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -34,7 +33,7 @@ public class JsonReadWrite {
     public LinkedHashMap<String, Object> readJsonFileToMap(String location) throws TextFileException {
         ObjectMapper objectMapper = getMapperInstance();
         try {
-            return objectMapper.readValue(TextFileUtil.getFile(location), new TypeReference<LinkedHashMap<String, Object>>(){});
+            return objectMapper.readValue(FileUtil.getFile(location), new TypeReference<LinkedHashMap<String, Object>>(){});
         } catch (IOException e) {
             throw new TextFileException(e.getMessage());
         }
@@ -52,7 +51,7 @@ public class JsonReadWrite {
     public <T> T readJsonFileAsKlass(String location, Class<T> klass) throws TextFileException {
         try {
             ObjectMapper objectMapper = getMapperInstance();
-            return klass.cast(objectMapper.readValue(TextFileUtil.getFile(location), klass));
+            return klass.cast(objectMapper.readValue(FileUtil.getFile(location), klass));
         } catch (Exception e) {
             throw new TextFileException(e.getMessage());
         }

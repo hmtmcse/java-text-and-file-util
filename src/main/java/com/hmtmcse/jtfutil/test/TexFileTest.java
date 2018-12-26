@@ -33,7 +33,7 @@ public class TexFileTest {
     public static void jsonTest(){
         try {
             ReadWriteTextFile readWriteTextFile = new ReadWriteTextFile();
-            TextFileData textFileData = readWriteTextFile.fileToString("test-data/user-test.json");
+            TextFileData textFileData = readWriteTextFile.readFileToString("test-data/user-test.json");
             TMUtil.print(textFileData.text);
 
             JsonReadWrite jsonReadWrite = new JsonReadWrite();
@@ -44,7 +44,7 @@ public class TexFileTest {
             linkedHashMap = jsonReadWrite.readJsonFileToMap("test-data/user-test.json");
             TMUtil.printMap(linkedHashMap);
 
-            textFileData = readWriteTextFile.fileToString("test-data/test-customer.json");
+            textFileData = readWriteTextFile.readFileToString("test-data/test-customer.json");
             TestCustomer testCustomer = jsonReadWrite.readJsonStringAsKlass(textFileData.text, TestCustomer.class);
             testCustomer = jsonReadWrite.readJsonFileAsKlass("test-data/test-customer.json", TestCustomer.class);
 
