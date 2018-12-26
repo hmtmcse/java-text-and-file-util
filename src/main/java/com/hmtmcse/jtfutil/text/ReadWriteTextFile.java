@@ -20,13 +20,40 @@ public class ReadWriteTextFile {
 
     public TextFileData readFileToString(String location) throws TextFileException {
         TextFileData textFileData = new TextFileData();
-        StringBuilder stringBuilder = new StringBuilder();
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(FileUtil.getFile(location)));
+            textFileData = readFromBufferedReaderToString(bufferedReader, true);
+            bufferedReader.close();
+        } catch (IOException e) {
+            throw new TextFileException(e.getMessage());
+        }
+        return textFileData;
+    }
+
+
+    public TextFileData readFileToString(InputStream inputStream) throws TextFileException {
+        TextFileData textFileData = new TextFileData();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            textFileData = readFromBufferedReaderToString(bufferedReader, false);
+            bufferedReader.close();
+        } catch (IOException e) {
+            throw new TextFileException(e.getMessage());
+        }
+        return textFileData;
+    }
+
+
+    public TextFileData readFromBufferedReaderToString(BufferedReader bufferedReader, Boolean isNewLine) throws TextFileException {
+        TextFileData textFileData = new TextFileData();
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 stringBuilder.append(line);
-                stringBuilder.append(System.getProperty("line.separator"));
+                if (isNewLine){
+                    stringBuilder.append(System.getProperty("line.separator"));
+                }
                 textFileData.addLine(line);
             }
             bufferedReader.close();
