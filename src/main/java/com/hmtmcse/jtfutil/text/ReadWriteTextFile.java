@@ -4,6 +4,7 @@ import com.hmtmcse.jtfutil.TextFileException;
 import com.hmtmcse.jtfutil.io.FileUtil;
 import com.hmtmcse.jtfutil.io.JavaFileDirOperation;
 import java.io.*;
+import java.util.List;
 
 public class ReadWriteTextFile {
 
@@ -83,12 +84,21 @@ public class ReadWriteTextFile {
     }
 
 
-    public boolean findAndReplace(String fileLocation, String search, String replace) throws TextFileException {
+    public boolean findAndReplace(String fileLocation, String find, String replace) throws TextFileException {
+        return bulkFindAndReplace(fileLocation, new FindReplaceData(find, replace));
+    }
+
+
+    public boolean bulkFindAndReplace(String fileLocation, FindReplaceData findReplaceData) throws TextFileException {
         TextFileData textFileData = readFileToString(fileLocation);
-        String newContent;
         if (textFileData.text != null) {
-            newContent = textFileData.text.replaceAll(search, replace);
-            return writeStringToFile(fileLocation, newContent, false);
+            String content = textFileData.text;
+            for (FindReplaceData findAndReplace : findReplaceData.getList()) {
+                if (findAndReplace.getFind() != null && findAndReplace.getReplace() != null) {
+                    content = content.replaceAll(findAndReplace.getFind(), findAndReplace.getReplace());
+                }
+            }
+            return writeStringToFile(fileLocation, content, false);
         } else {
             return false;
         }
@@ -106,6 +116,7 @@ public class ReadWriteTextFile {
             throw new TextFileException(e.getMessage());
         }
     }
+
 
 
 }
