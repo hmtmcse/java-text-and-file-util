@@ -2,12 +2,14 @@ package com.hmtmcse.jtfutil.io;
 
 import com.hmtmcse.io.exception.TmIoException;
 import com.hmtmcse.jtfutil.TextFileException;
+import com.hmtmcse.jtfutil.text.ReadWriteTextFile;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
 public class TmZipUtil {
@@ -44,5 +46,21 @@ public class TmZipUtil {
             throw new TextFileException(ex.getMessage());
         }
     }
+
+
+    public static String getStringFromZipFile(String zipFileLocation, String fileName) throws TextFileException {
+        try {
+            ZipFile zipFile = new ZipFile(zipFileLocation);
+            ReadWriteTextFile readWriteTextFile = new ReadWriteTextFile();
+            if (zipFile.getEntry(fileName) == null){
+                return readWriteTextFile.getStringFromInputStream(zipFile.getInputStream(zipFile.getEntry(fileName))).text;
+            }else {
+                return null;
+            }
+        } catch (IOException e) {
+            throw new TextFileException(e.getMessage());
+        }
+    }
+
 
 }

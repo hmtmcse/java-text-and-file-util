@@ -4,7 +4,6 @@ import com.hmtmcse.jtfutil.TextFileException;
 import com.hmtmcse.jtfutil.io.FileUtil;
 import com.hmtmcse.jtfutil.io.JavaFileDirOperation;
 import java.io.*;
-import java.util.List;
 
 public class ReadWriteTextFile {
 
@@ -31,7 +30,7 @@ public class ReadWriteTextFile {
     }
 
 
-    public TextFileData readFileToString(InputStream inputStream) throws TextFileException {
+    public TextFileData getStringFromInputStream(InputStream inputStream) throws TextFileException {
         TextFileData textFileData = new TextFileData();
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));

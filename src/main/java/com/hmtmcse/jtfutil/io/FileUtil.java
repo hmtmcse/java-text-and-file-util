@@ -145,6 +145,7 @@ public class FileUtil {
         return Files.isSymbolicLink(locationFile.toPath());
     }
 
+
     public static String getExtension(String fileName) {
         if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0) {
             return fileName.substring(fileName.lastIndexOf(".") + 1);
