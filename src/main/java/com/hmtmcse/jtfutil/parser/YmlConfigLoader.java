@@ -23,4 +23,12 @@ public class YmlConfigLoader {
         }
         return ymlLinkedHashMap;
     }
+
+
+    public static Object getValue(String key, String defaultValue){
+        if (ymlLinkedHashMap != null && ymlLinkedHashMap.get(key) != null){
+            return ymlLinkedHashMap.get(key);
+        }
+        return defaultValue;
+    }
 }
