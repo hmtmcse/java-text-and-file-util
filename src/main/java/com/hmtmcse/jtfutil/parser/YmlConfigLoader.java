@@ -25,9 +25,26 @@ public class YmlConfigLoader {
     }
 
 
-    public static Object getValue(String key, String defaultValue){
+    public static Object getMapValue(String key, String defaultValue){
         if (ymlLinkedHashMap != null && ymlLinkedHashMap.get(key) != null){
             return ymlLinkedHashMap.get(key);
+        }
+        return defaultValue;
+    }
+
+
+    public static Object getMapNestedValue(String defaultValue, String ...keys){
+        if (ymlLinkedHashMap != null){
+            LinkedHashMap<String, Object> temp = ymlLinkedHashMap;
+            for (String key : keys){
+                if (temp.get(key) == null){
+                    return defaultValue;
+                }else if (temp.get(key) instanceof LinkedHashMap){
+                    temp = (LinkedHashMap<String, Object>) temp.get(key);
+                }else{
+                    return temp.get(key);
+                }
+            }
         }
         return defaultValue;
     }
