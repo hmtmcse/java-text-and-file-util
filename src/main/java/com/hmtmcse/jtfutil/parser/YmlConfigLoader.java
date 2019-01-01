@@ -12,7 +12,7 @@ public class YmlConfigLoader {
     private YmlConfigLoader() {
     }
 
-    public static LinkedHashMap<String, Object> ymlAsMap(String location) throws TextFileException {
+    public static LinkedHashMap<String, Object> loadYmlAsMap(String location) throws TextFileException {
         if (instance == null) {
             synchronized (YmlReader.class) {
                 if (instance == null) {
