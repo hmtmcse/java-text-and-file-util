@@ -48,4 +48,21 @@ public class YmlConfigLoader {
         }
         return defaultValue;
     }
+
+    public static String getMapNestedValueAsString(String defaultValue, String ...keys){
+        Object object = getMapNestedValue(defaultValue, keys);
+        if (object != null){
+            return object.toString();
+        }
+        return null;
+    }
+
+
+    public static Integer getMapNestedValueAsInteger(String defaultValue, String ...keys){
+        String object = getMapNestedValueAsString(defaultValue, keys);
+        if (object != null){
+            return Integer.valueOf(object);
+        }
+        return null;
+    }
 }
