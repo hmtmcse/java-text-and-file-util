@@ -84,17 +84,6 @@ public class ReadWriteTextFile {
         return writeStringToFile(location, content, name, false);
     }
 
-    public Boolean writeObjectAsJsonFile(String location, String name, Object object) throws TextFileException {
-        String contentAsString = "";
-        try{
-            ObjectMapper objectMapper = new ObjectMapper();
-            contentAsString = objectMapper.writeValueAsString(object);
-        } catch (JsonProcessingException e) {
-            throw new TextFileException(e.getMessage());
-        }
-        return writeStringToFile(location, contentAsString, name, false);
-    }
-
 
     public boolean findAndReplace(String fileLocation, String find, String replace) throws TextFileException {
         return bulkFindAndReplace(fileLocation, new FindReplaceData(find, replace));

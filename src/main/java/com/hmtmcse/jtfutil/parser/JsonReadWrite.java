@@ -1,10 +1,12 @@
 package com.hmtmcse.jtfutil.parser;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hmtmcse.jtfutil.TextFileException;
 import com.hmtmcse.jtfutil.io.FileUtil;
+import com.hmtmcse.jtfutil.text.ReadWriteTextFile;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -55,6 +57,18 @@ public class JsonReadWrite {
         } catch (Exception e) {
             throw new TextFileException(e.getMessage());
         }
+    }
+
+    public Boolean writeObjectAsJsonFile(String location, String name, Object object) throws TextFileException {
+        String contentAsString = "";
+        try{
+            ObjectMapper objectMapper = new ObjectMapper();
+            contentAsString = objectMapper.writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            throw new TextFileException(e.getMessage());
+        }
+        ReadWriteTextFile readWriteTextFile = new ReadWriteTextFile();
+        return readWriteTextFile.writeStringToFile(location, contentAsString, name, false);
     }
 
 }
