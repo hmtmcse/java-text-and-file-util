@@ -1,5 +1,7 @@
 package com.hmtmcse.jtfutil.text;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hmtmcse.jtfutil.TextFileException;
 import com.hmtmcse.jtfutil.io.FileUtil;
 import com.hmtmcse.jtfutil.io.JavaFileDirOperation;
@@ -80,6 +82,17 @@ public class ReadWriteTextFile {
 
     public Boolean writeStringToFile(String location, String name, String content) throws TextFileException {
         return writeStringToFile(location, content, name, false);
+    }
+
+    public Boolean writeObjectAsJsonFile(String location, String name, Object object) throws TextFileException {
+        String contentAsString = "";
+        try{
+            ObjectMapper objectMapper = new ObjectMapper();
+            contentAsString = objectMapper.writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            throw new TextFileException(e.getMessage());
+        }
+        return writeStringToFile(location, contentAsString, name, false);
     }
 
 
