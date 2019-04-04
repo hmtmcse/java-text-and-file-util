@@ -1,21 +1,19 @@
 package com.hmtmcse.jtfutil.io;
 
-import com.hmtmcse.io.exception.TmIoException;
-import com.hmtmcse.io.implement.FileDirOperation;
-import com.hmtmcse.jtfutil.TextFileException;
 
+import com.hmtmcse.jtfutil.TextFileException;
 import java.io.File;
 
-public class JavaFileDirOperation implements FileDirOperation {
+public class JavaFileDirOperation{
 
 
-    @Override
-    public Boolean copy(String source, String destination) throws TmIoException {
+
+    public Boolean copy(String source, String destination) throws FileExceptionHandler {
         return null;
     }
 
-    @Override
-    public Boolean makeDir(String location) throws TmIoException {
+
+    public Boolean makeDir(String location) throws FileExceptionHandler {
         try {
             FileUtil.getFile(location);
             return true;
@@ -24,14 +22,14 @@ public class JavaFileDirOperation implements FileDirOperation {
             try{
                 return file.mkdir();
             }catch (Exception ex){
-                throw new TmIoException(ex.getMessage());
+                throw new FileExceptionHandler(ex.getMessage());
             }
         }
     }
 
 
-    @Override
-    public Boolean makeDirP(String location) throws TmIoException {
+
+    public Boolean makeDirP(String location) throws FileExceptionHandler {
         try {
             FileUtil.getFile(location);
             return true;
@@ -40,7 +38,7 @@ public class JavaFileDirOperation implements FileDirOperation {
             try{
                 return file.mkdirs();
             }catch (Exception ex){
-                throw new TmIoException(ex.getMessage());
+                throw new FileExceptionHandler(ex.getMessage());
             }
         }
     }

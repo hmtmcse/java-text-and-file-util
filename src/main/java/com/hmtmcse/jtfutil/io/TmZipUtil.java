@@ -1,9 +1,7 @@
 package com.hmtmcse.jtfutil.io;
 
-import com.hmtmcse.io.exception.TmIoException;
 import com.hmtmcse.jtfutil.TextFileException;
 import com.hmtmcse.jtfutil.text.ReadWriteTextFile;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -42,7 +40,7 @@ public class TmZipUtil {
             zipInputStream.closeEntry();
             zipInputStream.close();
             return true;
-        } catch (IOException | TmIoException | TextFileException ex) {
+        } catch (IOException | FileExceptionHandler | TextFileException ex) {
             throw new TextFileException(ex.getMessage());
         }
     }
