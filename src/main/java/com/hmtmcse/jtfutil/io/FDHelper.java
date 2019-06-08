@@ -154,7 +154,7 @@ public class FDHelper  implements FileHelperDef {
     }
 
     @Override
-    public FileHelperResponseDef listAllFileAndDirectory(FileHelperRequestDef requestDef) throws FileHelperException {
+    public <FDListRequest> FileHelperResponseDef listAllFileAndDirectory(FDListRequest requestDef) throws FileHelperException {
         return null;
     }
 }
