@@ -81,7 +81,7 @@ public class ReadWriteTextFile {
     }
 
     public Boolean writeStringToFile(String location, String name, String content) throws TextFileException {
-        return writeStringToFile(location, content, name, false);
+        return writeStringToFile(location, name, content, false);
     }
 
 

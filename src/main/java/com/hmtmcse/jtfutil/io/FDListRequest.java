@@ -51,4 +51,15 @@ public class FDListRequest implements FileHelperRequestDef<FDListRequest> {
         isRecursive = recursive;
         return this;
     }
+
+    @Override
+    public FDListRequest getInstance() {
+        return this;
+    }
+
+    @Override
+    public String throwInvalidInstanceMassage() {
+        return "Create Instance by FileHelperRequestDef<FDListRequest> requestDef = new FDListRequest(); this way.";
+    }
+
 }
