@@ -14,7 +14,9 @@ public class FindReplaceData {
     public String replace;
 
     public FindReplaceData(String find, String replace) {
-        addFindReplace(find, replace);
+        this.find = find;
+        this.replace = replace;
+        findReplaceDataList.add(this);
     }
 
     public String getFind() {
