@@ -5,6 +5,7 @@ import com.hmtmcse.io.file.FileHelperRequestDef;
 public class FDRequest implements FileHelperRequestDef<FDRequest> {
 
     private String location = null;
+    private String destination = null;
 
 
     public FDRequest() {}
@@ -22,6 +23,14 @@ public class FDRequest implements FileHelperRequestDef<FDRequest> {
         return this;
     }
 
+    public String getDestination() {
+        return destination;
+    }
+
+    public FDRequest setDestination(String destination) {
+        this.destination = destination;
+        return this;
+    }
 
     @Override
     public FDRequest getInstance() {

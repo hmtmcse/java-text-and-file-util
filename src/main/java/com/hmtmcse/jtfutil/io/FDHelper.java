@@ -17,6 +17,14 @@ public class FDHelper  implements FileHelperDef {
         return new File(location);
     }
 
+    private FDRequest getFDRequest(FileHelperRequestDef requestDef) throws FileHelperException {
+        if (requestDef.getInstance() instanceof FDRequest) {
+            return (FDRequest) requestDef.getInstance();
+        }
+        throwException(requestDef.throwInvalidInstanceMassage());
+        return null;
+    }
+
     @Override
     public FileHelperResponseDef copy(FileHelperRequestDef requestDef) throws FileHelperException {
         return null;
@@ -132,9 +140,24 @@ public class FDHelper  implements FileHelperDef {
     }
 
     @Override
-    public FileHelperResponseDef rename(FileHelperRequestDef requestDef) throws FileHelperException {
-        return null;
+    public FDResponse rename(FileHelperRequestDef requestDef) throws FileHelperException {
+        FDResponse fdResponse = new FDResponse();
+        FDRequest fdRequest = getFDRequest(requestDef);
+        File source = getFile(fdRequest.getLocation());
+        File destination = getFile(fdRequest.getDestination());
+        try {
+            if (!source.exists()) {
+                throwException("Source Not Exist");
+            } else if (destination.exists()) {
+                throwException("Destination File Already Exist");
+            }
+            fdResponse.isSuccess = source.renameTo(destination);
+        } catch (Exception e) {
+            throwException(e.getMessage());
+        }
+        return fdResponse;
     }
+
 
     @Override
     public FileHelperResponseDef createSoftLink(FileHelperRequestDef requestDef) throws FileHelperException {

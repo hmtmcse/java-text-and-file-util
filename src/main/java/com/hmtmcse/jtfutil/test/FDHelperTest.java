@@ -169,6 +169,19 @@ public class FDHelperTest {
         TMUtil.print("---------------------------------------------------------------------------");
     }
 
+    public static void rename(){
+        String loc = TMConfigHolder.TEST_TEMP_DIR;
+        FDRequest fdRequest = new FDRequest(TmIoUtil.concatLocation(loc, a));
+        fdRequest.setDestination(TmIoUtil.concatLocation(loc, "rename-to"));
+        FileHelperRequestDef<FDRequest> requestDef = fdRequest;
+        FDHelper fdHelper = new FDHelper();
+        try {
+            fdHelper.rename(requestDef);
+        } catch (FileHelperException e) {
+            TMUtil.print(e.getMessage());
+        }
+    }
+
     public static void main(String[] args) throws FileHelperException {
         TMConfigHolder.isDebug = true;
 
@@ -192,6 +205,10 @@ public class FDHelperTest {
 
         printTestLine("Testing dirOnlyFileList");
         dirOnlyFileList();
+        printEmptyLine();
+
+        printTestLine("Testing rename");
+        rename();
         printEmptyLine();
 
     }
