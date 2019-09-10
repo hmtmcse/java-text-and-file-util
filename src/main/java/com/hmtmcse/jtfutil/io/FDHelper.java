@@ -12,7 +12,8 @@ import java.util.Objects;
 
 public class FDHelper  implements FileHelperDef {
 
-    private File getFile(String location) throws FileHelperException {
+    @Override
+    public File getFile(String location) throws FileHelperException {
         throwIfNull(location, "Path Should not be null");
         return new File(location);
     }
