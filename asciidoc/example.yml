@@ -1,0 +1,41 @@
+integer : 10
+number : 10.2
+boolean : true
+string : 'This is Bismillah String'
+unQuotedString : Unquoted Strin
+multi-word : 'Multi word Variable'
+# This Line Representing Comment
+
+special-character-string : "let me put a colon here: oops"
+
+list:
+  - 'first item'
+  - 10
+  - 20.2
+
+inLineList : [1, 2, 3, 4]
+
+mapOrDictionary :
+  name : 'Touhid Mia'
+  country : 'Bangladesh'
+  age: 113
+
+inLineMapOrDictionary : { key: 'value'}
+
+listOfMap:
+  - name : 'Touhid Mia'
+    district : 'Rangpur'
+  - name : 'Nijhum'
+    district : 'Dhaka'
+
+listAndMap:
+  - 'Bangladesh'
+  - name : 'Touhid Mia'
+    district : 'Rangpur'
+  - name : 'Nijhum'
+    district : 'Dhaka'
+
+
+document: this is document 1
+---
+document: this is document 2
