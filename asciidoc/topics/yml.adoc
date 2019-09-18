@@ -1,0 +1,27 @@
+== YAML CheatSheet
+
+=== Example YAML
+
+
+
+
+=== Scalars
+=== Lists
+=== Dictionary or Map
+=== Multi Documents
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.References
+. https://gettaurus.org/docs/YAMLTutorial/
