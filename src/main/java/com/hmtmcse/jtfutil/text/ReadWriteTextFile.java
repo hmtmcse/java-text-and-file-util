@@ -1,7 +1,6 @@
 package com.hmtmcse.jtfutil.text;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.hmtmcse.jtfutil.TextFileException;
 import com.hmtmcse.jtfutil.io.FileUtil;
 import com.hmtmcse.jtfutil.io.JavaFileDirOperation;

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+
+@Deprecated
 public class FileUtil {
 
     public static final String DIRECTORY = "DIRECTORY";
