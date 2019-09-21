@@ -288,4 +288,8 @@ public class FDHelper  implements FileHelperDef {
 
 
 
+    public static FDHelper instance(){
+        return new FDHelper();
+    }
+
 }
