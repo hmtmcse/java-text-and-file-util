@@ -22,4 +22,5 @@ dependencies {
     compile project(':java-common')
     compile group: 'org.yaml', name: 'snakeyaml', version: '1.23'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+    compile group: 'org.jsoup', name: 'jsoup', version: '1.12.1'
 }
