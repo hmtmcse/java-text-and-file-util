@@ -5,6 +5,7 @@ import com.hmtmcse.jtfutil.TextFileException;
 import com.hmtmcse.jtfutil.io.FileUtil;
 import com.hmtmcse.jtfutil.io.JavaFileDirOperation;
 import java.io.*;
+import java.util.Map;
 
 public class ReadWriteTextFile {
 
@@ -89,15 +90,28 @@ public class ReadWriteTextFile {
     }
 
 
+    public String findAndReplaceInText(String content, FindReplaceData findReplaceData) {
+        for (FindReplaceData findAndReplace : findReplaceData.getList()) {
+            if (findAndReplace.getFind() != null && findAndReplace.getReplace() != null) {
+                content = content.replaceAll(findAndReplace.getFind(), findAndReplace.getReplace());
+            }
+        }
+        return content;
+    }
+
+
+    public FindReplaceData copyFromMap(Map<String, String> map) {
+        FindReplaceData findReplaceData = new FindReplaceData();
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            findReplaceData.addFindReplace(entry.getKey(), entry.getValue());
+        }
+        return findReplaceData;
+    }
+
     public boolean bulkFindAndReplace(String fileLocation, FindReplaceData findReplaceData) throws TextFileException {
         TextFileData textFileData = readFileToString(fileLocation);
         if (textFileData.text != null) {
-            String content = textFileData.text;
-            for (FindReplaceData findAndReplace : findReplaceData.getList()) {
-                if (findAndReplace.getFind() != null && findAndReplace.getReplace() != null) {
-                    content = content.replaceAll(findAndReplace.getFind(), findAndReplace.getReplace());
-                }
-            }
+            String content = findAndReplaceInText(textFileData.text, findReplaceData);
             return writeStringToFile(fileLocation, content, false);
         } else {
             return false;

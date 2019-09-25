@@ -56,6 +56,14 @@ public class YmlReader {
         }
     }
 
+    public <T> T ymlAsKlassByString(String ymlString, Class<T> klass) throws TextFileException {
+        Yaml yaml = new Yaml();
+        try {
+            return klass.cast(yaml.loadAs(ymlString, klass));
+        } catch (Exception e) {
+            throw new TextFileException(e.getMessage());
+        }
+    }
 
     public <T> T ymlAsNestedKlass(String location, Class<T> klass) throws TextFileException {
         Yaml yaml = new Yaml(new Constructor(klass));

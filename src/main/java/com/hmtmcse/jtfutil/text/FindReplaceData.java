@@ -13,6 +13,8 @@ public class FindReplaceData {
     public String find;
     public String replace;
 
+    public FindReplaceData(){}
+
     public FindReplaceData(String find, String replace) {
         this.find = find;
         this.replace = replace;
