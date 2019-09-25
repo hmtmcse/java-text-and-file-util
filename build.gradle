@@ -4,6 +4,7 @@ group 'com.hmtmcse'
 version '1.0'
 
 apply plugin:'java'
+apply plugin:'groovy'
 
 sourceCompatibility = 1.8
 
