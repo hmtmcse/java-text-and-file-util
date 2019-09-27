@@ -9,8 +9,7 @@ public class YmlConfigLoader {
     private static volatile YmlReader instance;
     private static volatile LinkedHashMap<String, Object> ymlLinkedHashMap;
 
-    private YmlConfigLoader() {
-    }
+    private YmlConfigLoader() {}
 
     public static LinkedHashMap<String, Object> loadYmlAsMap(String location) throws TextFileException {
         if (instance == null) {

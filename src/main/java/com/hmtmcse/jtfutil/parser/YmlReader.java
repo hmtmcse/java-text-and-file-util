@@ -4,6 +4,7 @@ package com.hmtmcse.jtfutil.parser;
 
 import com.hmtmcse.jtfutil.TextFileException;
 import com.hmtmcse.jtfutil.text.ReadWriteTextFile;
+import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -74,6 +75,17 @@ public class YmlReader {
         }
     }
 
+    public String klassToString(Object data) throws TextFileException {
+        DumperOptions options = new DumperOptions();
+        options.setPrettyFlow(true);
+        options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+        Yaml yaml = new Yaml(options);
+        try {
+            return yaml.dump(data);
+        } catch (Exception e) {
+            throw new TextFileException(e.getMessage());
+        }
+    }
 
 
 }
