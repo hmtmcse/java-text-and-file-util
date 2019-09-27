@@ -1,12 +1,15 @@
 package com.hmtmcse.jtfutil.parser;
 
 
-
 import com.hmtmcse.jtfutil.TextFileException;
 import com.hmtmcse.jtfutil.text.ReadWriteTextFile;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
+import org.yaml.snakeyaml.introspector.Property;
+import org.yaml.snakeyaml.nodes.NodeTuple;
+import org.yaml.snakeyaml.nodes.Tag;
+import org.yaml.snakeyaml.representer.Representer;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -75,11 +78,35 @@ public class YmlReader {
         }
     }
 
-    public String klassToString(Object data) throws TextFileException {
+    private DumperOptions getDumperOption(){
         DumperOptions options = new DumperOptions();
         options.setPrettyFlow(true);
         options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
-        Yaml yaml = new Yaml(options);
+        return options;
+    }
+
+    public String klassToString(Object data) throws TextFileException {
+        Yaml yaml = new Yaml(getDumperOption());
+        try {
+            return yaml.dump(data);
+        } catch (Exception e) {
+            throw new TextFileException(e.getMessage());
+        }
+    }
+
+    private class SkipNullRepresenter extends Representer {
+        @Override
+        protected NodeTuple representJavaBeanProperty(Object javaBean, Property property, Object propertyValue, Tag customTag) {
+            if (propertyValue == null) {
+                return null;
+            } else {
+                return super.representJavaBeanProperty(javaBean, property, propertyValue, customTag);
+            }
+        }
+    }
+
+    public String klassToStringSkipNull(Object data) throws TextFileException {
+        Yaml yaml = new Yaml(new SkipNullRepresenter(), getDumperOption());
         try {
             return yaml.dump(data);
         } catch (Exception e) {
