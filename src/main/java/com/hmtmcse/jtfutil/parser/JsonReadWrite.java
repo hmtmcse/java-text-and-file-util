@@ -1,5 +1,6 @@
 package com.hmtmcse.jtfutil.parser;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -59,14 +60,27 @@ public class JsonReadWrite {
         }
     }
 
-    public Boolean writeObjectAsJsonFile(String location, String name, Object object) throws TextFileException {
-        String contentAsString = "";
+    public String objectAsJsonString(Object object) throws TextFileException {
         try{
             ObjectMapper objectMapper = new ObjectMapper();
-            contentAsString = objectMapper.writeValueAsString(object);
+            return objectMapper.writeValueAsString(object);
         } catch (JsonProcessingException e) {
             throw new TextFileException(e.getMessage());
         }
+    }
+
+    public String objectAsJsonStringPretty(Object object) throws TextFileException {
+        try{
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+            return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            throw new TextFileException(e.getMessage());
+        }
+    }
+
+    public Boolean writeObjectAsJsonFile(String location, String name, Object object) throws TextFileException {
+        String contentAsString = objectAsJsonString(object);
         ReadWriteTextFile readWriteTextFile = new ReadWriteTextFile();
         return readWriteTextFile.writeStringToFile(location, contentAsString, name, false);
     }
