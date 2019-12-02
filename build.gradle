@@ -15,13 +15,21 @@ repositories {
     maven { url "http://central.maven.org/maven2/" }
 }
 
-dependencies {
 
-    compile group: 'com.atlassian.commonmark', name: 'commonmark', version: '0.13.0'
-    compile group: 'com.atlassian.commonmark', name: 'commonmark-ext-gfm-tables', version: '0.13.0'
-    
-    compile project(':java-common')
+def dependencyList = [
+        "java-common",
+]
+
+
+dependencies {
+    dependencyList.each {
+        if (findProject(":" + it)){
+            compile project(":" + it)
+        }
+    }
     compile group: 'org.yaml', name: 'snakeyaml', version: '1.23'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
     compile group: 'org.jsoup', name: 'jsoup', version: '1.12.1'
+    compile group: 'com.atlassian.commonmark', name: 'commonmark', version: '0.13.0'
+    compile group: 'com.atlassian.commonmark', name: 'commonmark-ext-gfm-tables', version: '0.13.0'
 }
