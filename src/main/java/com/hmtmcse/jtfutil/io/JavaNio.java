@@ -48,6 +48,17 @@ public class JavaNio {
         }
     }
 
+    public static Boolean createDirectory(String path) {
+        Path sourceFile = Paths.get(path);
+        try {
+            Files.createDirectories(sourceFile);
+            return true;
+        } catch (IOException ex) {
+            return false;
+        }
+    }
+
+
     public static Path concatPath(String first, String second){
         return Paths.get(first, second);
     }
