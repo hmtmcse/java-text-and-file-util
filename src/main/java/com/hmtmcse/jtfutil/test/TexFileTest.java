@@ -61,7 +61,7 @@ public class TexFileTest {
 
     public static void main(String[] args) {
         TMConfigHolder.isDebug = true;
-        jsonTest();
+        ymlReaderTest();
     }
 
 
