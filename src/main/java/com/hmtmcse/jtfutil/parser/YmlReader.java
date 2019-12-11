@@ -35,6 +35,16 @@ public class YmlReader {
         }
     }
 
+    public LinkedHashMap<String, Object> ymlAsMapFromString(String content) throws TextFileException {
+        Yaml yaml = new Yaml();
+        try {
+            return yaml.load(content);
+        } catch (Exception e) {
+            throw new TextFileException(e.getMessage());
+        }
+    }
+
+
     public List<LinkedHashMap<String, Object>> loadAllYmlAsMap(String location) throws TextFileException {
         Yaml yaml = new Yaml();
         List<LinkedHashMap<String, Object>> list = new ArrayList<>();

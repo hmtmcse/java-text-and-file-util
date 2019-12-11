@@ -32,4 +32,13 @@ public class JacksonYml {
         }
     }
 
+    public <T> T ymlAsNestedKlassFromString(String content, Class<T> klass) throws TextFileException {
+        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+        try {
+            return klass.cast(mapper.readValue(content, klass));
+        } catch (Exception e) {
+            throw new TextFileException(e.getMessage());
+        }
+    }
+
 }
