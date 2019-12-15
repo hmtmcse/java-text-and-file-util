@@ -1,5 +1,7 @@
 package com.hmtmcse.jtfutil.parser;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.hmtmcse.jtfutil.TextFileException;
@@ -34,6 +36,7 @@ public class JacksonYml {
 
     public <T> T ymlAsNestedKlassFromString(String content, Class<T> klass) throws TextFileException {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         try {
             return klass.cast(mapper.readValue(content, klass));
         } catch (Exception e) {
