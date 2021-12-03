@@ -9,7 +9,6 @@ apply plugin:'groovy'
 repositories {
     mavenLocal()
     jcenter()
-    maven { url "https://dl.bintray.com/hmtmcse/maven/" }
     maven { url "http://central.maven.org/maven2/" }
 }
 
